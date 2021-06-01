@@ -12,7 +12,7 @@ async function getAllSuggestions (req, res){
 
 async function getSingleSuggestion(req, res){
     try {
-        let findSuggestion = Suggestion.findById(req.params.id)
+        let findSuggestion = await Suggestion.findById(req.params.id)
         res.json({message:"success", findSuggestion}) 
     } catch (error) {
         res.status(500).json({message:"error", error:error.message})
