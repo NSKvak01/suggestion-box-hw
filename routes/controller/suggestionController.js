@@ -1,20 +1,5 @@
 const Suggestion = require("../model/Suggestion")
 
-function checkIsEmpty(target){
-    if(target.length===0){
-        return true
-    } else{
-        return false
-    }
-}
-
-function isLowerCase(target){
-    if(target === target.toLowerCase()){
-        return false
-    } else{
-        return true
-    }
-}
 
 async function getAllSuggestions (req, res){
     try {
@@ -38,21 +23,6 @@ async function createSuggestion(req,res){
 const {title, author, suggestion, likes, anonymous} = req.body
 let errorObj = {}
 
-    if(checkIsEmpty(title)){
-        errorObj.title = "Title cannot be empty"
-    }
-    if(isLowerCase(title)){
-        errorObj.titleLower = "Title should be lowercase"
-    }
-    if(checkIsEmpty(suggestion)){
-        errorObj.suggestion = "Suggestion cannot be empty"
-    }
-    if(isLowerCase(suggestion)){
-        errorObj.suggestionLower = "Suggestion should be lowercase"
-    }
-    if(isLowerCase(author)){
-        errorObj.author = "Author should be lowercase"
-    }
     if(Object.keys(errorObj).length>0){
         return res.status(500).json({message:'error', payload:errorObj})
     }
@@ -74,20 +44,7 @@ let errorObj = {}
 }
 
 async function updateSuggestion(req,res){
-    const {title, suggestion} = req.body
     let errorObj = {}
-    if(checkIsEmpty(title)){
-        errorObj.title = "Title cannot be empty"
-    }
-    if(isLowerCase(title)){
-        errorObj.titleLower = "Title should be lowercase"
-    }
-    if(checkIsEmpty(suggestion)){
-        errorObj.suggestion = "Suggestion cannot be empty"
-    }
-    if(isLowerCase(suggestion)){
-        errorObj.suggestionLower = "Suggestion should be lowercase"
-    }
     if(Object.keys(errorObj).length>0){
         return res.status(500).json({message:'error', payload:errorObj})
     }
